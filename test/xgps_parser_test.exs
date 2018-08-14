@@ -63,6 +63,13 @@ defmodule XGPSParserTest do
     assert expected == actual
   end
 
+  test "parse sentence RMC - empty (no fix or not ready for some devices)" do
+    sentence = "$GPRMC,,V,,,,,,,,,,N*53\r\n"
+    expected = {:unknown, :unknown_content_length}
+    actual = XGPS.Parser.parse_sentence(sentence)
+    assert expected == actual
+  end
+
   test "parse sentence GGA" do
     sentence = "$GPGGA,144729.000,5441.1600,S,02515.6000,W,1,05,2.20,118.7,M,27.6,M,,*61\r\n"
     {:ok, time} = Time.new(14,47,29,000)

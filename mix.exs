@@ -8,7 +8,7 @@ defmodule XGPS.Mixfile do
      elixir: "~> 1.7.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     source_url: "https://github.com/royveshovda/xgps",
+     source_url: "https://github.com/fermuch/xgps",
      deps: deps(),
      description: description(),
      package: package()]

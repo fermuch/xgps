@@ -125,14 +125,14 @@ defmodule XGPS.Parser do
   defp parse_string(""), do: nil
   defp parse_string(value), do: value
 
-  defp parse_time(time) when length(time) < 6, do: nil
+  defp parse_time(time) when byte_size(time) < 6, do: nil
   defp parse_time(time) do
     parts = String.split(time, ".")
     parse_hours_minutes_seconds_ms(parts)
   end
 
-  defp parse_hours_minutes_seconds_ms([main]) when length(main) != 6, do: :unknown_format
-  defp parse_hours_minutes_seconds_ms([main, _millis]) when length(main) != 6, do: :unknown_format
+  defp parse_hours_minutes_seconds_ms([main]) when byte_size(main) != 6, do: :unknown_format
+  defp parse_hours_minutes_seconds_ms([main, _millis]) when byte_size(main) != 6, do: :unknown_format
   defp parse_hours_minutes_seconds_ms([main, ""]), do: parse_hours_minutes_seconds_ms([main,"0"])
   defp parse_hours_minutes_seconds_ms([main]), do: parse_hours_minutes_seconds_ms([main,"0"])
   defp parse_hours_minutes_seconds_ms([main, millis]) do
@@ -144,7 +144,7 @@ defmodule XGPS.Parser do
     time
   end
 
-  defp parse_date(date_raw) when length(date_raw) != 6, do: :unknown_format
+  defp parse_date(date_raw) when byte_size(date_raw) != 6, do: :unknown_format
   defp parse_date(date_raw) do
     {day,_} = String.slice(date_raw,0,2) |> Integer.parse
     {month,_} = String.slice(date_raw,2,2) |> Integer.parse

@@ -65,7 +65,16 @@ defmodule XGPSParserTest do
 
   test "parse sentence RMC - empty (no fix or not ready for some devices)" do
     sentence = "$GPRMC,,V,,,,,,,,,,N*53\r\n"
-    expected = {:unknown, :unknown_content_length}
+    expected = %XGPS.Messages.RMC{
+      date: :unknown_format,
+      latitude: nil,
+      longitude: nil,
+      magnetic_variation: nil,
+      speed_over_groud: nil,
+      status: "V",
+      time: nil,
+      track_angle: nil
+    }
     actual = XGPS.Parser.parse_sentence(sentence)
     assert expected == actual
   end

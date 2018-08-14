@@ -4,8 +4,8 @@ defmodule XGPS.Mixfile do
   def project do
     [app: :xgps,
      name: XGPS,
-     version: "0.4.1",
-     elixir: "~> 1.7-dev",
+     version: "0.5.0",
+     elixir: "~> 1.7.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      source_url: "https://github.com/royveshovda/xgps",

@@ -6,3 +6,5 @@ erl_crash.dump
 /priv
 *.o
 /doc
+.vscode
+.elixir_ls
